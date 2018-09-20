@@ -102,9 +102,9 @@ $(DIST_DIR):
 	@mkdir -p $@
 
 clean:
-	@rm -f $(OBJECTS)
-	@rm -f $(TARGET)
-	@rm -rf $(DIST_DIR)
-	@rm -f $(DIST_ARCHIVE)
+	rm -f $(OBJECTS)
+	rm -f $(TARGET)
+	rm -rf $(DIST_DIR)
+	rm -f $(DIST_ARCHIVE)
 
 .PHONY: all clean dist
