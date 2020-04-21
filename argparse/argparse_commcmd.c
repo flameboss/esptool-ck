@@ -32,7 +32,7 @@
 #include "espcomm.h"
 
 
-int flash_id;
+uint32_t flash_id;
 
 
 int argparse_commcmd(int num_args, char **arg_ptr)
