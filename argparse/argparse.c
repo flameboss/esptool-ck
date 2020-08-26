@@ -132,6 +132,7 @@ they are given.\n\
 
 int parse_arg(int num_args, char **arg_ptr)
 {
+    LOGDEBUG("%d %s", num_args, arg_ptr[0]);
     if(arg_ptr[0][0] == '-' && num_args)
     {
         switch(arg_ptr[0][1])

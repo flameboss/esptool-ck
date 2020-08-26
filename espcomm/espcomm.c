@@ -60,6 +60,8 @@ static const char *espcomm_port =
 "";
 #endif
 
+static int wait_delay_sec;
+
 static unsigned int espcomm_baudrate = 115200;
 static uint32_t espcomm_address = 0x00000;
 
@@ -236,6 +238,10 @@ static int espcomm_sync(void)
     {
         LOGINFO("resetting board");
         espcomm_enter_boot();
+        if (wait_delay_sec) {
+            LOGINFO("waiting %d sec", wait_delay_sec);
+            sleep(wait_delay_sec);
+        }
         for (int retry_sync = 0; retry_sync < 3; ++retry_sync)
         {
             LOGINFO("trying to connect");
@@ -651,6 +657,18 @@ int espcomm_set_port(char *port)
 {
     LOGDEBUG("setting port from %s to %s", espcomm_port, port);
     espcomm_port = port;
+    return 1;
+}
+
+int espcomm_set_wait(char *arg)
+{
+    int delay = atoi(arg);
+    if (delay < 0) {
+        LOGERR("ignoring wait time %s", arg);
+        return 1;
+    }
+    LOGDEBUG("setting wait from %d to %d", wait_delay_sec, delay);
+    wait_delay_sec = delay;
     return 1;
 }
 

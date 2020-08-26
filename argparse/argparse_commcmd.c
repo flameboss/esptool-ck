@@ -143,6 +143,17 @@ int argparse_commcmd(int num_args, char **arg_ptr)
                 }
                 break;
 
+            case 'w':
+                if(num_args < 1)
+                {
+                    return 0;
+                }
+                if(espcomm_set_wait(arg_ptr[0]))
+                {
+                    return 2;
+                }
+                break;
+
             default:
                 return 0;
                 break;
