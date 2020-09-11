@@ -715,6 +715,8 @@ bool espcomm_erase_flash()
         return false;
     }
 
+    LOGINFO("erasing...");
+
     flash_packet[0] = 0;
     flash_packet[1] = 0x00000200;
     flash_packet[2] = BLOCKSIZE_FLASH;
@@ -743,7 +745,14 @@ bool espcomm_erase_flash()
     ram_packet[0] = 0;
     ram_packet[1] = 0x40004984;
     send_packet.checksum = 0;
-    espcomm_send_command(RAM_DOWNLOAD_END, (unsigned char*) ram_packet, 8, 0);
+    res = espcomm_send_command(RAM_DOWNLOAD_END, (unsigned char*) ram_packet, 8, 0);
+    if (res == 0)
+    {
+        LOGERR("espcomm_erase_flash: RAM_DOWNLOAD_END failed");
+        return false;
+    }
+
+    LOGINFO("erased");
     return true;
 }
 
