@@ -36,9 +36,9 @@ else
 endif
 
 ifeq ($(TARGET_OS),osx)
-	TARGET_CFLAGS   = -mmacosx-version-min=10.6 -arch x86_64
-	TARGET_CXXFLAGS = -mmacosx-version-min=10.6 -arch x86_64
-	TARGET_LDFLAGS  = -mmacosx-version-min=10.6 -arch x86_64
+	TARGET_CFLAGS   = -mmacosx-version-min=10.6
+	TARGET_CXXFLAGS = -mmacosx-version-min=10.6
+	TARGET_LDFLAGS  = -mmacosx-version-min=10.6
 endif
 
 # Packaging into archive (for 'dist' target)
